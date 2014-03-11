@@ -1,0 +1,85 @@
+
+
+META_BOX
+!!!!!!!!!!!!!!!!!!!!!!!!! MUDAR O ARRAY DE CONFIG DE ELEMENTS, ADICIONANDO A ID DO META_BOX COMO KEY
+- deixar item do array id automático para evitar conflitos de nome
+- ao configurar um custom metabox de taxonomia, automaticamente remover o metabox core
+
+
+ARQUIVOS PARA REVISAR:
+functions/taxonomy_meta.php
+functions/user.php
+config/user.php
+
+CONCATENATE SCRIPTS STYLES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- será preciso criar uma programação própria, pois a do wp funciona apenas proo core :(
+- também pensar em uma forma de carregar separadamente scripts e css de admin apenas para alguns trabalhos e que seja compatívil com o sistema de usar uma pasta centralizada de plugins
+
+ADMIN_FUNCTIONS
+- verificar a unificação de css de tiny_mce MAPEAR MELHOR AONDE SE USAM site.css e editor.css
+- rever as chamadas de js de forms elements
+
+NEWSLETTER
+- opção de deletar no admin
+
+CONNECTED CONTENTS
+- escolher o formato do thumbnail
+
+SLIDER
+- pensar numa forma de 'plugnizar'
+- mover o output para o plugin
+- formatação diferencado quando não tem itens sufucientes para navegção
+
+PAGE
+- pagelink mudar para pegar corretamente os childs $parent = is_subpage( $page_id );
+
+SHARE
+- rever códigos padrão - escolher entre FB tags e iframe
+
+
+
+
+ 
+UPLOAD FIELD
+http://www.webmaster-source.com/2010/01/08/using-the-wordpress-uploader-in-your-plugin-or-theme/
+http://austinpassy.com/snippets/wordpress/creating-custom-metaboxes-and-the-built-in-uploader/
+http://wordpress.org/extend/plugins/multiple-post-thumbnails/screenshots/
+http://lifeonlars.com/wordpress/how-to-add-multiple-featured-images-in-wordpress/
+http://wpquestions.com/question/show/id/1946
+
+
+=====================================================================================================
+=====================================================================================================
+=====================================================================================================
+
+verificar erro de js na listagem de posts
+
+
+TEXTAREA
+ - custom editor array não funciona dentro do duplicate itens linha 60:
+	$data['options']['editor']['editor_type'] = $data['name'];]
+	USAR WP_EDITOR >>>> EM WIDGETS É UM PROBLEMÃO A SER RESOLVIDO
+
+COLOCAR INDEX NO ARRAY $new_boxes, isso afeta meta_box_functions na linha 153:
+	for( $i = 0; $i < count($new_boxes); $i++ ){
+	trocar por:
+	foreach( $new_boxes as $box_id => $box_data ){
+
+
+
+wp_save_image()
+wp_crop_image()
+wp_load_image()
+stream_preview_image()
+_crop_image_resource()
+_flip_image_resource()
+image_resize()
+wp_save_image_file()
+wp_stream_image()
+media_handle_upload()
+wp_handle_upload()
+media_upload_image()
+media_upload_file()
+
+
+

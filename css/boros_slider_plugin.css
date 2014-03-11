@@ -1,0 +1,153 @@
+
+/* slider principal */
+.boros_slider_double .boros_slider_holder {width:640px;}
+.boros_slider_double .boros_slider_strip .slide {width:640px;}
+.boros_slider_double.boros_slider_active .boros_slider_strip .slide {width:640px;}
+
+.boros_slider_single .boros_slider_holder {width:310px;}
+.boros_slider_single .boros_slider_strip .slide {width:310px;}
+.boros_slider_single.boros_slider_active .boros_slider_strip .slide {width:310px;}
+
+.boros_slider {
+	float:left;
+	position:relative;
+}
+.boros_slider .boros_slider_holder {
+	margin:0 auto;
+	overflow:hidden;
+	position:relative;
+}
+.boros_slider .boros_slider_strip {
+	overflow:hidden;
+	position:relative;
+}
+
+/**
+ * Configuração do slide padrão, sem javascript aplicado.
+ * Formatar para apresentação na página sem js
+ */
+.boros_slider .boros_slider_strip .slide {
+	clear:both;
+}
+.boros_slider .boros_slider_strip .slide_inner {
+	padding:0;
+}
+/**
+ * Para definir um espaço entre os slides, defina o width do .slide como fixo e adicione padding ao .inner_slide
+ * Cálculo: o padding de .slide_inner é diferença entre a largura de .boros_slider_holder e a largura de .slide
+ *  
+ */
+.boros_slider_active .boros_slider_strip .slide {
+	clear:none;
+	float:left;
+	position:relative;
+}
+.boros_slider_active .boros_slider_strip .slide_inner {
+	padding:0 20px 0 0;
+}
+.boros_slider .boros_slider_strip .active {
+	
+}
+.boros_slider .boros_slider_nav {
+	display:none;
+}
+.boros_slider_double.boros_slider_active .boros_slider_nav {
+	display:block;
+	right:0;
+	padding:0;
+	position:absolute;
+	top:-4px;
+	z-index:1;
+}
+.boros_slider_double .boros_slider_nav .btn_nav {
+	background: url(img/bg_menu_numbers.png) no-repeat -37px;
+	color: white;
+	cursor:pointer;
+	display:block;
+	float:left;
+	font-size:14px;
+	font-weight:500;
+	height:29px;
+	line-height:27px;
+	overflow:hidden;
+	text-align:center;
+	text-decoration:none;
+	width: 28px;
+}
+.boros_slider_double .boros_slider_nav .btn_nav:hover,
+.boros_slider_double .boros_slider_nav .active {
+	background: url(img/bg_menu_numbers.png) no-repeat 0;
+}
+.boros_slider_double .boros_slider_nav .btn_prev_next {
+	display:none;
+}
+.slide_image {
+	float:left;
+	position:relative;
+}
+.slide_image a {
+	display:block;
+}
+.boros_slider .slide_content {
+	outline:1px solid rgba(255,0,0,0.3);
+}
+.boros_slider_single.boros_slider_active .boros_slider_nav {
+	display:block;
+	right:0;
+	padding:0;
+	position:absolute;
+	top:60px;
+	z-index:1;
+}
+.boros_slider_single .slide {
+	height:275px;
+}
+.boros_slider_single .boros_slider_nav .btn_nav {
+	display:none;
+}
+.boros_slider_single .boros_slider_nav .btn_next {
+	background:url(img/btn_ok.png) no-repeat;
+	cursor:pointer;
+	display:block;
+	height:29px;
+	text-indent:-999999px;
+	width:28px;
+}
+.boros_slider .details h3,
+.boros_slider .details .slide_resume,
+.boros_slider .details .leia_mais_branco {
+	display:none;
+	position:relative;
+}
+.slider_blog_box .details,
+.slider_palavras_box .details {
+	clear:both;
+	display:block;
+}
+.slider_blog_box .details h3 {
+	display: block;
+	height: 65px;
+	padding:10px 10px 3px;
+	overflow: hidden;
+}
+.slider_blog_box .details h3 a {
+	display: block;
+	font-size: 18px;
+	width: 290px;
+}
+.slider_blog_box .details .leia_mais_branco,
+.slider_palavras_box .details .leia_mais_branco {
+	bottom:10px;
+	display:block;
+	position:absolute;
+	right:10px;
+}
+.slider_palavras_box .details .slide_resume {
+	display: block;
+	height: 65px;
+	margin-bottom: 3px;
+	margin-left: 10px;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.slide img.wp-post-image {margin:0;float:none;}

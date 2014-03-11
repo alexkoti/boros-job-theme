@@ -1,0 +1,80 @@
+
+=============================================================================
+MODELO PARA TEMPLATES DE CATEGORIA|TAXONOMY =================================
+=============================================================================
+
+	category.php ---------------------- listagens gerais
+	taxonomy.php ---------------------- listagem do custom-taxonomy, ex: cores.php
+	category-category-name.php -------- apenas listagem de category-name
+	taxonomy-tax-name.php ------------- apenas listagem do termo, ex: cores-azul.php
+
+Caso a categoria|taxonomia seja child, será procurado templates no nível mais baixo até o topo:
+
+ - taxonomia: Cores
+     - Quentes
+         - Vermelhos
+         - Laranjas
+     - Frias
+         - azuis
+         - verdes
+
+Exemplo, uma listagem de posts marcados com 'Vermelhos', fica assim: cores/quentes/vermelhos, e será esta 
+ordem na procura de templates:
+ 1) taxonomy-cores-vermelhos.php
+ 2) taxonomy-cores-quentes.php
+ 3) taxonomy-cores.php
+
+Nesse exemplo, caso só exista o template de cores 'Quentes', esse template será usado nas listagens de vermelhos e laranjas.
+
+
+
+=============================================================================
+MODELO PARA TEMPLATES SINGLE ================================================
+=============================================================================
+
+	single.php ------------------------ interna geral
+	single-category-novidades.php ----- single apenas de posts na categoria 'Novidades'
+	single-cores.php ------------------ single geral de qualquer post classificado em alguma Cor(taxonomia)
+	single-cores-vermelhos.php -------- single apenas de posts na cor 'Vermelhos'
+
+Exemplo, um post com nome 'Magenta', marcado na cor 'Vermelhos':
+ 1) single-cores-vermelhos.php
+ 2) single-cores-quentes.php
+ 3) single-cores.php
+
+
+
+=============================================================================
+PRIORIDADES DE TEMPLATES ====================================================
+=============================================================================
+Pode acontecer de um conteúdo(post) estar classificado em mais de uma taxonomia, por exemplo 'Categorias' e 'Regiões'. Nesse caso, 
+será buscado os possíveis templates obedecendo a ordem de prioridade das taxonomias, que é uma opção gravado em banco. Caso não
+exista essa ordem gravada, será usada a ordem padrão de registro:
+	1) category
+	2) post_tag
+	3) nav_menu
+	4) link_category
+	5) post_format
+	6) custom_taxonomy
+	7) custom_taxonomy...
+
+Exemplo:
+Caso um post esteja na categoria 'Novidades' e na cor 'Vermelhos', e a prioridade seja a padrão, a ordem de templates buscados será:
+
+
+	single-category-novidades.php
+	single-category.php
+	single-cores.php
+	single-cores-vermelhos.php
+	single.php
+
+
+
+
+
+
+
+
+
+
+

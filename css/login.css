@@ -1,0 +1,13 @@
+h1 {
+	font:italic 30px georgia, serif;
+	margin:0 0 15px 8px;
+	text-align:center;
+}
+h1 a {
+	background:none;
+	height:auto;
+	padding:0;
+	text-decoration:none;
+	text-indent:0;
+	width:auto;
+}

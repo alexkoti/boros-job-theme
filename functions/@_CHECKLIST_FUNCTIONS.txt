@@ -1,0 +1,56 @@
+
+================================================================================
+FRONTEND.PHP ===================================================================
+================================================================================
+Configurar apenas caso seja preciso filtrar a quantidade de posts por página em diferentes locais e redirects de páginas.
+
+
+
+================================================================================
+HEAD.PHP =======================================================================
+================================================================================
+As chamadas básicas de css e js estão prontas, serão necessários apenas os css/js adicionais, provavelmente de plugins jquery
+
+
+
+================================================================================
+LOGIN.PHP ======================================================================
+================================================================================
+Será preciso apenas editar o /css/login.css
+
+
+
+================================================================================
+MEDIA.PHP ======================================================================
+================================================================================
+Sempre configurar e habilitar post_thumbnails e image_sizes.
+Dependendo do tema será preciso editar os templates de anexo e galeria padrão do wp
+
+
+
+================================================================================
+MENUS_SIDEBAR.PHP ==============================================================
+================================================================================
+Registrar sidebars e menus aqui.
+Editar add_class_to_custom_post_type_menu() caso seja preciso ativar um item do menu em alguma listagem ou post_type, exemplo: ativar a page 'Agenda', caso exiba a listagem ou qualquer item do post_type 'agenda'.
+
+
+
+================================================================================
+MINI_TEMPLATES.PHP =============================================================
+================================================================================
+Certamente será editado completamente, conforme as necessidades do layout. São guardados aqui código sfocados no output simples de blocos de html:
+ - custom_search_form
+ - post_meta_posted_on [data e categorias, tags aplicadas]
+ - custom_content_nav [anterior|próximo]
+ - share_box
+ - excerpts [configuração de saída dos resumos]
+
+
+
+================================================================================
+TEMPLATE_REDIRECTS.PHP =========================================================
+================================================================================
+Dificilmente será editado, apenas caso precise de um redirecionamento muito específico de template.
+
+
