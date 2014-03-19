@@ -19,18 +19,16 @@ get_header(); ?>
 			}
 			?>
 			
-			<hr />
-			
 			<section>
 				<h5>Lista de posts chamada por <code>WP_Query()</code>, dentro de <code>front-page.php</code>:</h5>
 				<dl>
 				<?php
 				$query = array(
-					'post_type' => 'post',
-					'post_status' => 'any',
+					'post_type' => array('post', 'page'),
+					'post_status' => 'publish',
 					'post_parent' => 0,
-					'orderby' => 'title',
-					'order' => 'ASC',
+					'orderby' => 'menu_order',
+					'order' => 'DESC',
 				);
 				$custom_posts = new WP_Query();
 				$custom_posts->query($query);
