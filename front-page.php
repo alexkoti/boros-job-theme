@@ -2,6 +2,10 @@
 /**
  * Template da página inicial do site.
  * Configurar qual 'page' deverá mostrar essa listagem em 'Admin > Configurações > Leitura', item 'Página inicial:'
+ * 
+ * Teste de comentário para sincronização :D
+ * 
+ * 
  */
 
 get_header(); ?>
