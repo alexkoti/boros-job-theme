@@ -172,33 +172,3 @@ jQuery(document).ready(function($){
 	
 	
 });
-
-/**
- * CONSOLE.LOG DUMMY
- * Função dummy para evitar erros nas chamadas esquecidas de console.log
- * 
- * @link	http://blog.patspam.com/2009/the-curse-of-consolelog
- * @link	http://stackoverflow.com/questions/1114187/is-it-a-bad-idea-to-leave-firebug-console-log-calls-in-your-producton-javascrip
- */
-if (!("console" in window) || !("firebug" in console)) {
-	var names = ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml", "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"];
-	window.console = {};
-	for (var i = 0, len = names.length; i < len; ++i) {
-		window.console[names[i]] = function(){};
-	}
-}
-
-window.log = function(){
-	log.history = log.history || [];   
-	log.history.push(arguments);
-	if(this.console){
-		//console.log( Array.prototype.slice.call(arguments) );
-	}
-};
-(function(doc){
-	var write = doc.write;
-	doc.write = function(q){ 
-	log('document.write(): ',arguments); 
-		if (/docwriteregexwhitelist/.test(q)) write.apply(doc,arguments);  
-	};
-})(document);
