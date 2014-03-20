@@ -36,6 +36,18 @@ function add_frontend_styles(){
 	$css->add('site');
 	$css->add('boros_slider_plugin');
 	
+	if( defined('LOCALHOST') and LOCALHOST == true ){
+		$css->add('responsive_debug');
+	}
+	$args = array(
+		'name' => 'fonts',
+		'src' => 'http://fonts.googleapis.com/css?family=Dosis:400,700|Amatic+SC:400,700',
+		'parent' => false,
+		'version' => '1',
+		'media' => 'screen',
+	);
+	$css->abs($args);
+	
 	/**
 	$css->add('forms');																							//simples, sem dependencia
 	$css->add('lightbox', 'lightbox')->child('lights', 'lightbox/themes')->child('shadows', 'lightbox/themes')->media('all');	//encadeamento de 2 styles child
@@ -45,6 +57,7 @@ function add_frontend_styles(){
 	global $wp_styles;pre($wp_styles); //debug
 	/**/
 }
+
 // JAVASCRIPTS - todos os scripts serão adicionados ao wp_footer() por padrão;
 function add_frontend_scripts(){
 	$js = new BorosJs();
