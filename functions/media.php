@@ -71,6 +71,37 @@ function lock_media_sizes(){
 
 
 /**
+ * ==================================================
+ * EMBED RESPONSIVO =================================
+ * ==================================================
+ * Youtube e Vimeo apenas
+ * 
+ * @todo Verificar o método antigo de aplicar os filtros de the_content para ativar o oembed
+ * 
+ */
+function responsive_video( $url, $echo = true ){
+	if( filter_var($url, FILTER_VALIDATE_URL) === FALSE){
+		$url = get_option('ao_vivo_video');
+	}
+	$video_url_vars = parse_url($url);
+	$find_youtube = 'youtube';
+	$pos = strpos($url, $find_youtube);
+	if($pos === false){
+		$video_tag = "<div class='videoWrapper'><iframe src='//player.vimeo.com/video{$video_url_vars['path']}' width='420' height='315' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>";
+	}
+	else{
+		parse_str($video_url_vars['query'], $video_vars);
+		$video_tag = "<div class='videoWrapper'><iframe width='420' height='315' src='http://www.youtube.com/embed/{$video_vars['v']}/' frameborder='0' allowfullscreen></iframe></div>";
+	}
+	
+	if( $echo == false ){
+		return $video_tag;
+	}
+	echo $video_tag;
+}
+
+
+/**
  * FORMATAÇÂO EXTRA DO THICKBOX
  * 
  * 1) Esconder o controle de galeria
