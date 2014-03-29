@@ -1,3 +1,6 @@
+TARFEAS:
+2014.03.24 - mover o 'bootstrap_nav_menu_walker' para o plugin base
+
 
 
 META_BOX

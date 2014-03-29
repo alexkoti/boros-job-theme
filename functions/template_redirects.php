@@ -69,8 +69,10 @@ function use_parent_term_template(){
 function custom_page_template( $page_template ){
 	global $post;
 	
-	if(file_exists(TEMPLATEPATH . '/page-' . $post->post_name . '.php')){
-		return TEMPLATEPATH . '/page-' . $post->post_name . '.php';
+	// caso já exista um template único do slug, apenas retornar
+	$custom_template = TEMPLATEPATH . "/page-{$post->post_name}.php";
+	if( $page_template == $custom_template ){
+		return $page_template;
 	}
 	
 	if( isset($post->ancestors) ){
@@ -88,6 +90,7 @@ function custom_page_template( $page_template ){
 	
 	return $page_template;
 }
+
 function custom_single_template( $single ){
 	global $wp_query, $post;
 	
