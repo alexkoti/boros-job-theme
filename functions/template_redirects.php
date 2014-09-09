@@ -11,15 +11,6 @@
  * 
  */
 
-/* ========================================================================== */
-/* ADD ACTIONS/FILTERS ====================================================== */
-/* ========================================================================== */
-//FIXOS
-add_filter( 'page_template', 'custom_page_template' );			// single-page
-add_filter( 'single_template', 'custom_single_template' );		// single
-add_action( 'template_redirect', 'use_parent_term_template' );	// listagem
-
-//CUSTOM
 
 
 /* ========================================================================== */
@@ -31,6 +22,7 @@ add_action( 'template_redirect', 'use_parent_term_template' );	// listagem
  * 
  * @link http://codex.wordpress.org/User:MichaelH/MyPlugins - modificado para pegar custom taxonomies
  */
+add_action( 'template_redirect', 'use_parent_term_template' );
 function use_parent_term_template(){
 	global $wp_query;
 	$GLOBALS['template'] = false;
@@ -66,6 +58,7 @@ function use_parent_term_template(){
  * 
  * @link http://justintadlock.com/archives/2008/12/06/creating-single-post-templates-in-wordpress
  */
+add_filter( 'page_template', 'custom_page_template' );
 function custom_page_template( $page_template ){
 	global $post;
 	
@@ -91,6 +84,7 @@ function custom_page_template( $page_template ){
 	return $page_template;
 }
 
+add_filter( 'single_template', 'custom_single_template' );
 function custom_single_template( $single ){
 	global $wp_query, $post;
 	
@@ -148,6 +142,5 @@ function custom_single_template( $single ){
 		
 	return $single;
 }
-
 
 
