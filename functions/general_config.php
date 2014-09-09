@@ -49,4 +49,4 @@ function boros_setup_theme(){
 add_theme_support( 'automatic-feed-links' );
 
 // Esconder a barra de admin do admin/frontend
-add_filter( 'show_admin_bar', '__return_false' );			// remover admin bar do frontend
+add_filter( 'show_admin_bar', '__return_false' );
