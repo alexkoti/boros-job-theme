@@ -33,6 +33,8 @@ function work_opengraph(){
 // STYLESHEETS
 function add_frontend_styles(){
 	$css = new BorosCss();
+	$css->add('bootstrap.min');
+	$css->add('photoswipe');
 	$css->add('site');
 	
 	if( defined('LOCALHOST') and LOCALHOST == true ){
@@ -63,8 +65,10 @@ function add_frontend_styles(){
 // JAVASCRIPTS - todos os scripts serão adicionados ao wp_footer() por padrão;
 function add_frontend_scripts(){
 	$js = new BorosJs();
-	$js->jquery('jquery_local', 'libs');
 	$js->jquery('jquery.validate.min', 'libs');
+	$js->jquery('bootstrap.min', 'libs');
+	$js->jquery('klass.min', 'libs');
+	$js->jquery('code.photoswipe-3.0.5.min', 'libs');
 	$js->jquery('functions');
 	$js->add('modernizr', 'libs', false, false);
 	$js->add('html5', 'libs', false, false);

@@ -1,0 +1,53 @@
+/* PRINT */
+
+body{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #444;
+font-size: 100%;
+}
+a{
+text-decoration: none;
+}
+
+footer a:link:after,
+.hentry a:link:after{ 
+content: " (" attr(href) ") "; 
+font-size: 80%;
+color: #444;
+} 
+footer {
+	border-top: 1px solid #cecece;
+	padding-top: 15px;
+	margin-top: 15px;
+} 
+footer a{
+	display: block;
+}
+.relacionadas,
+form,
+.sidebar,
+.sr-only,
+.navbar-nav,
+.navbar,
+.nav,
+.navposts,
+.nav-list,
+.header_debug,
+.comment-meta, 
+.commentmetadata,
+#comments,
+.breadcrumb,
+.share_box,
+.share_service,
+.featured_comments,
+.print_button,
+.navigation,
+.btn,
+#header #searchform,
+.post-meta{
+display: none;
+}
+.header_nav .navbar-mam a.navbar-logo img{
+	display: block !important;
+	outline: 1px solid red;
+}

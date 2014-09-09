@@ -1,0 +1,407 @@
+/**
+ * ==================================================
+ * BREAKPOINTS ======================================
+ * ==================================================
+ * Interceptar apenas as larguras
+ * 
+ */
+
+
+
+/**
+ * MODELOS INDENTED
+ * 
+ */
+@media only screen and (max-width: 240px) { /* Mobile Small */
+	
+}
+@media only screen and (min-width: 241px) and (max-width: 320px) { /* Mobile Medium */
+	
+}
+@media only screen and (min-width: 321px) and (max-width: 380px) { /* Mobile Large */
+	
+}
+@media only screen and (min-width: 381px) and (max-width: 480px) { /* Tablet Small */
+	
+}
+@media only screen and (min-width: 481px) and (max-width: 767px) { /* Mobile Init */
+	
+}
+@media only screen and (min-width: 768px) and (max-width: 979px) { /* Tablet Portrait */
+	
+}
+@media only screen and (min-width: 980px) and (max-width: 1999px) { /* Desktop Medium */
+	
+}
+@media only screen and (min-width: 1200px) { /* Desktop Large */
+	
+}
+
+/**
+ * MODELOS FLAT
+ * 
+ */
+/* Mobile Small */    @media only screen and (max-width: 240px) {  }
+/* Mobile Medium */   @media only screen and (min-width: 241px) and (max-width: 320px) {  }
+/* Mobile Large */    @media only screen and (min-width: 321px) and (max-width: 380px) {  }
+/* Tablet Small */    @media only screen and (min-width: 381px) and (max-width: 480px) {  }
+/* Mobile Init */     @media only screen and (min-width: 481px) and (max-width: 767px) {  }
+/* Tablet Portrait */ @media only screen and (min-width: 768px) and (max-width: 979px) {  }
+/* Desktop Medium */  @media only screen and (min-width: 980px) and (max-width: 1999px) {  }
+/* Desktop Large */   @media only screen and (min-width: 1200px) {  }
+
+
+
+/**
+ * Mobile Small
+ * 
+ */
+@media only screen and (max-width: 240px) {
+	body::before{
+		content:"Mobile Small 240px <";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(160, 0, 0, 0.7);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		left:0;
+		width:70%;
+		z-index:99;
+	}
+}
+
+/**
+ * Mobile Medium
+ * 
+ */
+@media only screen and (min-width:241px) and (max-width: 320px) {
+	body::before{
+		content:"Mobile Medium 241px <> 320px";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(255, 0, 0, 0.7);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		left:0;
+		width:70%;
+		z-index:99;
+	}
+}
+
+/**
+ * Mobile Large
+ * 
+ */
+@media only screen and (min-width:321px) and (max-width: 380px) {
+	body::before{
+		content:"Mobile Large 321px <> 380px";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(255, 169, 0, 0.7);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		left:0;
+		width:70%;
+		z-index:99;
+	}
+}
+
+/**
+ * Tablet Small
+ * 
+ */
+@media only screen and (min-width: 381px) and (max-width: 480px) {
+	body::before{
+		content:"Tablet Small 381px <> 480px";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(200, 200, 0, 0.7);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		left:0;
+		width:70%;
+		z-index:99;
+	}
+}
+
+/**
+ * Mobile Init
+ * 
+ */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+	body::before{
+		content:"Mobile Init 481px <> 767px";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(30, 200, 0, 0.7);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		left:0;
+		width:70%;
+		z-index:99;
+	}
+}
+
+/**
+ * Tablet Portrait
+ * 
+ */
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+	body::before{
+		content:"Tablet Portrait / Desktop Small 768px <> 979px";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(0, 200, 200, 0.7);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		left:0;
+		width:70%;
+		z-index:99;
+	}
+}
+
+/**
+ * Desktop Medium
+ * 
+ */
+@media only screen and (min-width: 980px) and (max-width: 1999px) {
+	body::before{
+		content:"Desktop Medium 980px <> 1999px";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(0, 0, 200, 0.7);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		left:0;
+		width:70%;
+		z-index:99;
+	}
+}
+
+/**
+ * Desktop Large
+ * 
+ */
+@media only screen and (min-width: 1200px) {
+	body::before{
+		content:"Desktop Large 1200px >";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(0, 0, 120, 0.7);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		left:0;
+		width:70%;
+		z-index:99;
+	}
+}
+
+
+/**
+ * ==================================================
+ * ORIENTATION ======================================
+ * ==================================================
+ * Interceptar as orientações
+ * 
+ */
+@media only screen and (orientation : portrait) {
+	body::after{
+		content:"portrait";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(0, 0, 0, 0.4);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		right:0;
+		width:30%;
+		z-index:99;
+	}
+}
+@media only screen and (orientation : landscape) {
+	body::after{
+		content:"landscape";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(0, 0, 0, 0.4);
+		padding:2px 0;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		right:0;
+		width:30%;
+		z-index:99;
+	}
+}
+
+
+/**
+ * ==================================================
+ * DEVICE TARGET ====================================
+ * ==================================================
+ * 
+ * 
+ */
+
+/**
+ * Desktop
+ * 
+ */
+@media only screen and (min-device-width: 1025px) {
+	/**
+	 * BUG no safari mac :D
+	 * 
+	html::after{
+		content:"context: desktop";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(0, 0, 0, 0.4);
+		height:1em;
+		line-height:1em;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		top:1em;
+		right:0;
+		width:50%;
+		z-index:99;
+	}
+	/**/
+}
+
+/**
+ * Mobiles
+ * 
+ */
+@media only screen and (max-device-width: 1024px) {
+	/**
+	 * BUG no safari mac :D
+	 * 
+	html::after{
+		content:"context: mobile";
+		color:#fff;
+		display:block;
+		text-align:center;
+		background:rgba(0, 0, 0, 0.4);
+		height:1em;
+		line-height:1em;
+		font-size:11px;
+		text-shadow:1px 1px 1px #000;
+		position:fixed;
+		bottom:0;
+		right:0;
+		width:50%;
+		z-index:99;
+	}
+	/**/
+}
+
+
+
+
+/**
+ * Mobile Portrait + Landscape
+ * 
+ */
+@media only screen and (min-width: 0px) and (max-width: 679px) {
+	
+}
+
+/**
+ * Mobile Portrait
+ * 
+ */
+@media only screen and (max-device-width : 320px) and (orientation : portrait) {
+	
+}
+
+/**
+ * Mobile Landscape
+ * 
+ */
+@media only screen and (max-device-width: 480px) and (orientation : landscape) {
+	
+}
+
+/**
+ * Tablet Portait
+ * 
+ */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+}
+
+/**
+ * Tablet Landscape
+ * 
+ * Quando está em landscape, as fontes podem ficar muito grandes se comparadas ao desktop, então esta é uma query para corrigir apenas para tablets
+ */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+	
+}
+
+/**
+ * Desktop Medium
+ * Tablet Portrait
+ * 
+ */
+@media only screen and (min-width: 680px) and (max-width: 979px) and (orientation : portrait) {
+	
+}
+
+/**
+ * Desktop Medium
+ * Tablet Landscape
+ * 
+ */
+@media only screen and (min-width: 680px) and (max-width: 979px) and (orientation : landscape) {
+	
+}
+
+/**
+ * Desktop Large
+ * 
+ */
+@media only screen and (min-width: 980px) and (max-width: 1420px) {
+	
+}
+
+
