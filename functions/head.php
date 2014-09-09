@@ -34,11 +34,12 @@ function work_opengraph(){
 function add_frontend_styles(){
 	$css = new BorosCss();
 	$css->add('site');
-	$css->add('boros_slider_plugin');
 	
 	if( defined('LOCALHOST') and LOCALHOST == true ){
 		$css->add('responsive_debug');
 	}
+	
+	/** MODELO absolute / google fonts
 	$args = array(
 		'name' => 'fonts',
 		'src' => 'http://fonts.googleapis.com/css?family=Dosis:400,700|Amatic+SC:400,700',
@@ -47,8 +48,9 @@ function add_frontend_styles(){
 		'media' => 'screen',
 	);
 	$css->abs($args);
+	/**/
 	
-	/**
+	/** MODELOS
 	$css->add('forms');																							//simples, sem dependencia
 	$css->add('lightbox', 'lightbox')->child('lights', 'lightbox/themes')->child('shadows', 'lightbox/themes')->media('all');	//encadeamento de 2 styles child
 	$css->add('animations', 'anims')->media('print')->alt();															//subpasta, media print, alternate stylesheet
@@ -63,7 +65,6 @@ function add_frontend_scripts(){
 	$js = new BorosJs();
 	$js->jquery('jquery_local', 'libs');
 	$js->jquery('jquery.validate.min', 'libs');
-	$js->jquery('boros_slider_plugin');
 	$js->jquery('functions');
 	$js->add('modernizr', 'libs', false, false);
 	$js->add('html5', 'libs', false, false);
