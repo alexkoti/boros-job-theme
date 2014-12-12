@@ -56,8 +56,8 @@ function add_frontend_styles(){
 	$css->add('forms');																							//simples, sem dependencia
 	$css->add('lightbox', 'lightbox')->child('lights', 'lightbox/themes')->child('shadows', 'lightbox/themes')->media('all');	//encadeamento de 2 styles child
 	$css->add('animations', 'anims')->media('print')->alt();															//subpasta, media print, alternate stylesheet
-	$css->add('ies', 'ie', 'all')->child('ie6', 'ie', 'handheld')->cond('if lt IE 7');										//ies, encadeando child ie6 condicional
-	$css->child('ie7', 'ie', 'all', 'ies')->cond('if lt 7');															//child de ies, media all, condicional
+	$css->add('ies', 'ie', 'all')->child('ie6', 'ie', 'handheld')->cond('lte IE 8');										//ies, encadeando child ie6 condicional
+	$css->child('ie7', 'ie', 'all', 'ies')->cond('lte 8');																//child de ies, media all, condicional
 	global $wp_styles;pre($wp_styles); //debug
 	/**/
 }
