@@ -142,8 +142,8 @@ $("#gallery-settings").hide();
  *
  * @return string - HTML do anexo
  */
-add_shortcode('wp_caption', 'custom_img_caption_shortcode');
-add_shortcode('caption', 'custom_img_caption_shortcode');
+//add_shortcode('wp_caption', 'custom_img_caption_shortcode');
+//add_shortcode('caption', 'custom_img_caption_shortcode');
 function custom_img_caption_shortcode($attr, $content = null) {
 	// Allow plugins/themes to override the default caption template.
 	$output = apply_filters('img_caption_shortcode', '', $attr, $content);
@@ -188,9 +188,9 @@ function custom_img_caption_shortcode($attr, $content = null) {
  * @return string - HTML da galeria
  */
 // remover galeria core
-remove_shortcode('gallery', 'gallery_shortcode');
+//remove_shortcode('gallery', 'gallery_shortcode');
 // adicionar custom gallery
-add_shortcode('gallery', 'custom_gallery_shortcode');
+//add_shortcode('gallery', 'custom_gallery_shortcode');
 function custom_gallery_shortcode($attr) {
 	global $post, $wp_locale;
 

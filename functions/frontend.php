@@ -20,6 +20,7 @@ function close_site(){
 }
 
 
+
 /**
  * ==================================================
  * GOOGLE ANALYTICS =================================
@@ -88,6 +89,8 @@ function filter_pre_get_posts( $query ){
 	return $query;
 }
 
+
+
 /**
  * ==================================================
  * REDIRECT =========================================
@@ -116,3 +119,5 @@ function redirect_pages( &$q ) {
 	pre($q->query_vars['numberposts']);
 	/**/
 }
+
+

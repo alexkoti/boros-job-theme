@@ -13,10 +13,11 @@
 
 
 
-/* ========================================================================== */
-/* TEMPLATE EM SUBCATEGORIA ================================================= */
-/* ========================================================================== */
 /**
+ * ==================================================
+ * TEMPLATE EM SUBCATEGORIA =========================
+ * ==================================================
+ * 
  * Usar o mesmo template de categoria nas listagens de sub-categorias.
  * Busca templates no formato {category|taxonomy}-term-slug.php
  * 
@@ -50,10 +51,11 @@ function use_parent_term_template(){
 
 
 
-/* ========================================================================== */
-/* SINGLES TEMPLATES ======================================================== */
-/* ========================================================================== */
 /**
+ * ==================================================
+ * SINGLES TEMPLATES ================================
+ * ==================================================
+ * 
  * Define templates para as páginas single, na seguinte ordem de prioridade: categoria, tag, author, single, default
  * 
  * @link http://justintadlock.com/archives/2008/12/06/creating-single-post-templates-in-wordpress
@@ -139,7 +141,7 @@ function custom_single_template( $single ){
 			}
 		}
 	}
-		
+	
 	return $single;
 }
 
