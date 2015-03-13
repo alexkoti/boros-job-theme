@@ -5,11 +5,40 @@
  * 
  */
 
+
+
+/**
+ * Adicionar CSS extras no editor tiny_mce
+ * 
+ */
+add_filter( 'after_setup_theme', 'boros_setup_theme' );
+function boros_setup_theme(){
+	// CSS integrando com o frontend
+	add_editor_style( 'css/tinymce-styles.css' );
+	// CSS inspirado no WYM-Editor
+	add_editor_style( 'css/wym-editor.css' );
+}
+
+/**
+ * Adicionar suporte aos feeds
+ * 
+ */
+add_theme_support( 'automatic-feed-links' );
+
+/**
+ * Esconder a barra de admin do admin/frontend
+ * 
+ */
+add_filter( 'show_admin_bar', '__return_false' );
+
+
+
 /**
  * ==================================================
  * ADD OPTIONS ======================================
  * ==================================================
  * Adicionar os defaults necessários ao ativar o tema.
+ * 
  */
 //add_action( 'init', 'my_direct_insert_options' );
 function my_direct_insert_options(){
@@ -35,18 +64,3 @@ function my_direct_insert_options(){
 	}
 }
 
-/**
- * Adicionar CSS as editor tiny_mce, integrando com o CSS do frontend
- * 
- */
-add_filter( 'after_setup_theme', 'boros_setup_theme' );
-function boros_setup_theme(){
-	add_editor_style( 'css/site.css' );
-	add_editor_style( 'css/editor.css' );
-}
-
-// Adicionar suporte aos feeds
-add_theme_support( 'automatic-feed-links' );
-
-// Esconder a barra de admin do admin/frontend
-add_filter( 'show_admin_bar', '__return_false' );

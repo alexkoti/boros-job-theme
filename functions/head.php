@@ -9,14 +9,18 @@
  * 
  */
 
-/* ========================================================================== */
-/* ADD ACTIONS/FILTERS ====================================================== */
-/* ========================================================================== */
+/**
+ * ==================================================
+ * ADD ACTIONS/FILTERS ==============================
+ * ==================================================
+ * 
+ * 
+ */
 if( !is_admin() ){
-	add_action( 'wp_print_styles', 'add_frontend_styles' );		// adicionar styles ao header
-	add_action( 'wp_print_scripts', 'add_frontend_scripts' );	// adicionar scripts ao header
-	remove_action('wp_head', 'wp_generator');					// remover a assinatura de versão do wordpress
-	add_action( 'wp_head', 'work_opengraph', 99 );
+	add_action( 'wp_print_styles', 'add_frontend_styles' );   // adicionar styles ao header
+	add_action( 'wp_print_scripts', 'add_frontend_scripts' ); // adicionar scripts ao header
+	add_action( 'wp_head', 'work_opengraph', 99 );            // iniciar o opengraph, caso esteja ativado
+	remove_action('wp_head', 'wp_generator');                 // remover a assinatura de versão do wordpress
 }
 
 function work_opengraph(){
@@ -27,14 +31,17 @@ function work_opengraph(){
 
 
 
-/* ========================================================================== */
-/* CONFIGURAÇÔES ============================================================ */
-/* ========================================================================== */
-// STYLESHEETS
+/**
+ * ==================================================
+ * STYLESHEETS ======================================
+ * ==================================================
+ * 
+ * 
+ */
 function add_frontend_styles(){
 	$css = new BorosCss();
 	$css->add('bootstrap.min');
-	$css->add('photoswipe');
+	$css->add('wp');
 	$css->add('site');
 	
 	if( defined('LOCALHOST') and LOCALHOST == true ){
@@ -53,16 +60,35 @@ function add_frontend_styles(){
 	/**/
 	
 	/** MODELOS
-	$css->add('forms');																							//simples, sem dependencia
-	$css->add('lightbox', 'lightbox')->child('lights', 'lightbox/themes')->child('shadows', 'lightbox/themes')->media('all');	//encadeamento de 2 styles child
-	$css->add('animations', 'anims')->media('print')->alt();															//subpasta, media print, alternate stylesheet
-	$css->add('ies', 'ie', 'all')->child('ie6', 'ie', 'handheld')->cond('lte IE 8');										//ies, encadeando child ie6 condicional
-	$css->child('ie7', 'ie', 'all', 'ies')->cond('lte 8');																//child de ies, media all, condicional
-	global $wp_styles;pre($wp_styles); //debug
+	//simples, sem dependencia
+	$css->add('forms');
+	
+	//encadeamento de 2 styles child
+	$css->add('lightbox', 'lightbox')->child('lights', 'lightbox/themes')->child('shadows', 'lightbox/themes')->media('all');
+	
+	//subpasta, media print, alternate stylesheet
+	$css->add('animations', 'anims')->media('print')->alt();
+	
+	//ies, encadeando child ie6 condicional
+	$css->add('ies', 'ie', 'all')->child('ie6', 'ie', 'handheld')->cond('lte IE 8');
+	
+	//child de ies, media all, condicional
+	$css->child('ie7', 'ie', 'all', 'ies')->cond('lte 8');
+	
+	//debug
+	global $wp_styles;pre($wp_styles);
 	/**/
 }
 
-// JAVASCRIPTS - todos os scripts serão adicionados ao wp_footer() por padrão;
+
+
+/**
+ * ==================================================
+ * JAVASCRIPTS ======================================
+ * ==================================================
+ * Todos os scripts serão adicionados ao wp_footer() por padrão
+ * 
+ */
 function add_frontend_scripts(){
 	$js = new BorosJs();
 	$js->jquery('jquery.validate.min', 'libs');
@@ -72,13 +98,14 @@ function add_frontend_scripts(){
 	$js->jquery('functions');
 	$js->add('modernizr', 'libs', false, false);
 	$js->add('html5', 'libs', false, false);
+	
 	/**
-	$js->jquery('myjqueryfuncs');						//jquery novo
-	$js->jquery('jquery-ui-core');						//jquery já registrado
-	$js->add('effects');								//simples
-	$js->add('lightbox', 'lightbox');					//simples subpasta
-	$js->add('thickbox')->child('extendthick');			//encadeado, simples
-	$js->add('thickbox')->child('extendthick', 'ext');	//encadeado, subpasta
+	$js->jquery('myjqueryfuncs');                      //jquery novo
+	$js->jquery('jquery-ui-core');                     //jquery já registrado
+	$js->add('effects');                               //simples
+	$js->add('lightbox', 'lightbox');                  //simples subpasta
+	$js->add('thickbox')->child('extendthick');        //encadeado, simples
+	$js->add('thickbox')->child('extendthick', 'ext'); //encadeado, subpasta
 	global $wp_scripts;pre($wp_scripts); //debug
 	/**/
 	
@@ -100,3 +127,6 @@ function add_frontend_scripts(){
 	);
 	/**/
 }
+
+
+
