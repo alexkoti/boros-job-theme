@@ -13,19 +13,32 @@
  * ==================================================
  * 
  */
-add_filter( 'get_search_form', 'custom_search_form' );
-function custom_search_form( $form ) {
-	$query = esc_attr(apply_filters('the_search_query', get_search_query()));
-	$value = ( $query == '' ) ? '' : $query;
-	
-	$form = '
-	<form method="get" id="searchform" action="' . home_url() . '/" >
-		<label for="search_term">Busca</label>
-		<input type="text" value="' . $value. '" id="search_term" class="ipt_search_text" name="s" placeholder="Procure no site" />
-		<input type="submit" class="ipt_search_submit" id="searchsubmit" value="ok" />
-	</form>';
-	return $form;
+function custom_search_form( $id = 'searchform', $class = '' ){
+    $query = esc_attr(apply_filters('the_search_query', get_search_query()));
+    $action = home_url('/');
+    
+    $form = "
+    <form method='get' id='{$id}' action='{$action}' class='{$class}'>
+        <div class='form-group'>
+            <label for='{$id}-search-term' class='sr-only'>Busca</label>
+            <div class='input-group'>
+                <input type='text' class='form-control' placeholder='Procure no site' id='{$id}-search-term' name='s' value='{$query}' />
+                <div class='input-group-btn'>
+                    <button type='submit' class='btn' id='{$id}-submit-btn'><span class='glyphicon glyphicon-search'></span></button>
+                </div>
+            </div>
+        </div>
+    </form>
+    ";
+    return $form;
 }
+
+add_filter( 'get_search_form', 'custom_search_form' );
+function filter_default_search_form( $form ){
+    return custom_search_form();
+}
+
+
 
 /**
  * ==================================================

@@ -12,12 +12,13 @@
  */
 add_action( 'admin_init', 'register_menus' );
 function register_menus(){
-	register_nav_menus(
-		array(
-		  'menu_header' => 'Slot Cabeçalho',
-		  'menu_footer' => 'Slot Rodapé',
-		)
-	);
+    register_nav_menus(
+        array(
+            'menu_header' => 'Slot Cabeçalho',
+            'menu_header_sec' => 'Slot Cabeçalho Secundário',
+            'menu_footer' => 'Slot Rodapé',
+        )
+    );
 }
 
 // FIXO: Adicionar item 'Home' às páginas dsponíveis para criar menus

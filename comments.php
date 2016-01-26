@@ -60,44 +60,42 @@
 <?php
 /**
  * Formulário de comments
+ * Já adaptado para bootstrap
  * 
- * 
+ * @link http://www.codecheese.com/2013/11/wordpress-comment-form-with-twitter-bootstrap-3-supports/
  */
- 
-$commenter = wp_get_current_commenter();
+add_filter( 'comment_form_default_fields', 'bootstrap3_comment_form_fields' );
+function bootstrap3_comment_form_fields( $fields ) {
+    $commenter = wp_get_current_commenter();
+    
+    $req      = get_option( 'require_name_email' );
+    $aria_req = ( $req ? " aria-required='true'" : '' );
+    $html5    = current_theme_supports( 'html5', 'comment-form' ) ? 1 : 0;
+    
+    $fields   =  array(
+        'author' => '<div class="form-group comment-form-author">' . '<label for="author">' . __( 'Name' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+                    '<input class="form-control required" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></div>',
+        'email'  => '<div class="form-group comment-form-email"><label for="email">' . __( 'Email' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+                    '<input class="form-control required" id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></div>',
+        'url'    => '<div class="form-group comment-form-url"><label for="url">' . __( 'Website' ) . '</label> ' .
+                    '<input class="form-control" id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></div>'        
+    );
+    
+    return $fields;
+}
 
-$name_field_value = ( !empty($commenter['comment_author']) ) ? esc_attr( $commenter['comment_author'] ) : '';
-$email_field_value = ( !empty($commenter['comment_author_email']) ) ? esc_attr( $commenter['comment_author_email'] ) : '';
+add_filter( 'comment_form_defaults', 'bootstrap3_comment_form' );
+function bootstrap3_comment_form( $args ) {
+    $args['comment_field'] = '<div class="form-group comment-form-comment">
+            <label for="comment">' . _x( 'Comment', 'noun' ) . '</label> 
+            <textarea class="form-control required" id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea>
+        </div>';
+    $args['class_submit'] = 'btn btn-default'; // since WP 4.1
+    
+    return $args;
+}
 
-$comment_type = 'comentario';
-$fields =  array(
-	'simple_text'	=>	'<p>Seu e-mail não será publicado. Seu comentário poderá ser moderado.</p>',
-	'author'		=>	'<div id="comment-form-author" class="form_element form_element_text">
-							<input id="author" class="form_element_input required" name="author" type="text" value="' . $name_field_value . '" placeholder="Seu nome" size="30" />
-							<label for="author">Nome</label>
-						</div>',
-	'email'			=>	'<div id="comment-form-email" class="form_element form_element_text">
-							<input id="email" class="form_element_input required email" name="email" type="text" value="' . $email_field_value . '" placeholder="Seu email" size="30" />
-							<label for="email">E-mail</label>
-						</div>',
-	'url'			=>	'<div class="form_element form_element_text comment-form-url">
-							<input id="url" class="form_element_input" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="Site(opcional)" size="30" />
-							<label for="url">Site</label>
-						</div>',
-);
-
-$args = array(
-	'fields'               => apply_filters( 'comment_form_default_fields', $fields ),
-	'comment_field'        => ' <div id="comment-form-message" class="form_element form_element_textarea">
-									<label for="comment">Comentário</label><br />
-									<textarea aria-required="true" rows="8" cols="45" name="comment" id="comment" class="ipt_textararea form_element_input required" placeholder="Digite sua mensagem aqui"></textarea>
-								</div>',
-	'comment_notes_before' => '',
-	'comment_notes_after'  => '',
-	'id_submit'            => 'comment_submit',
-	'label_submit'         => 'ok',
-);
-comment_form( $args );
+comment_form();
 ?>
 
 		</div>

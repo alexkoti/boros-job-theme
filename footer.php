@@ -1,11 +1,19 @@
-		
-	</div><!-- #content -->
-	
-	<footer id="footer">
-		<?php wp_nav_menu( array('theme_location' => 'menu_secundario', 'container_class' => 'nav') ); ?>
-	</footer>
-	
-</div><!-- #site -->
+
+<footer id="footer">
+    <div class="container">
+        <div class="col-md-12">
+            <?php
+            $args = array(
+                'theme_location'  => 'menu_footer', 
+                'container'       => false,
+                'container_class' => 'menu-footer',
+                'menu_class'      => 'nav nav-pills',
+            );
+            wp_nav_menu($args);
+            ?>
+        </div>
+    </div>
+</footer>
 
 <?php wp_footer(); ?>
 </body>
