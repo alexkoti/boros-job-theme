@@ -1,0 +1,200 @@
+@import 'vars.less';
+@import 'mixins.less';
+
+/**
+ * ==================================================
+ * ESTILOS PADRÃO DO WORDPRESS ======================
+ * ==================================================
+ * Estes seletores estão disponíveis para qualquer instalação do WordPress. Por exemplo as classes de alinhamento são 
+ * aplicadas nos elementos do corpo de texto pelo tinymce, já as classes wp-caption* são aplicadas pelo shortcode de 
+ * galeria, assim por diante.
+ * 
+ */
+
+
+/**
+ * Alinhamento de texto e imagens
+ * 
+ */
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+
+figure.alignright,
+img.alignright,
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+img.alignleft,
+figure.alignleft,
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+
+img.aligncenter,
+figure.aligncenter,
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+
+/**
+ * Galeria nativa do WordPress
+ * 
+ */
+.gallery-caption {
+    
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid @color-border;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+/**
+ * Sticky posts
+ * Formatar de forma diferenciada posts afixados - aqueles que sempre são exibidos primeiro nas listagens
+ * 
+ */
+.sticky {
+    
+}
+
+/**
+ * Comentários
+ * 
+ */
+
+/* comentário feito autor do post: */
+.bypostauthor {
+    
+}
+
+/**
+ * Esses estilos serão aplicados tanto no corpo de texto de cada post/content, assim como no editor de texto dentro do 
+ * admin, que também possui a class hentry.
+ * Aqui as tags <H*> são diferenciadas, para que possa ser usadas tags <H1> no título do post(padrão), mas permitir 
+ * também a inserção no 'the_content' via painel de postagem, permitindo assim a hierarquia completa de headings dentro 
+ * do corpo do post|conteúdo.
+ * 
+ */
+.hentry .entry_content h1,
+.hentry .entry_content h2,
+.hentry .entry_content h3,
+.hentry .entry_content h4,
+.hentry .entry_content h5,
+.hentry .entry_content h6 {
+    color: @color-text ;
+}
+.hentry .entry_content h1 {font-size: 24px;}
+.hentry .entry_content h2 {font-size: 20px;}
+.hentry .entry_content h3 {font-size: 18px;}
+.hentry .entry_content h4 {font-size: 16px;}
+.hentry .entry_content h5 {font-size: 14px;}
+.hentry .entry_content h6 {font-size: 12px;}
+
+.hentry .entry_content p {
+    line-height: normal;
+}
+
+.hentry ol {
+    margin:10px 0 10px 25px;
+}
+
+.hentry ol li {
+    list-style:decimal outside;
+    line-height:18px;
+    margin:10px 0 10px 0;
+}
+
+.hentry ul {
+    margin:10px 0 10px 0;
+}
+
+.hentry ul li {
+    list-style:disc outside;
+    line-height:18px;
+    margin:10px 0 10px 20px;
+}
+
+.hentry blockquote {
+    border:1px dashed;
+    display:block;
+    font-size:18px;
+    line-height:24px;
+    margin:10px auto !important;
+    width:340px;
+}
+
+.hentry blockquote p {
+    margin:20px;
+}
+
+.hentry blockquote strong {
+    color:#8966ac;
+    font-size:24px;
+    font-weight:normal;
+}

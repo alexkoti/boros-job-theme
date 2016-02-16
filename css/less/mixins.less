@@ -1,0 +1,226 @@
+
+// ==================================================
+// PARAMETRIC MIXINS ================================
+// ==================================================
+// Mixins com parametros
+// 
+//
+
+// Background SVG com troca de cor dinâmica
+// Necessita de compilador nativo para replace. O arquivo svg necessita do atributo fill para que seja feita
+// a troca de cor. Os programas gráficos como o Illustrator não aplicam o atributo fill caso a cor seja #000000
+// 
+// @link http://zslabs.com/articles/svg-background-fill/
+// 
+// @param string - caminho da imagem
+// @param mix    - cor para aplicar no svg, padrão css(hexa, rgb, rgba, etc)
+// 
+.icon-fill(@src, @fill) {
+    @data-uri: data-uri('image/svg+xml;charset=UTF-8', "@{src}");
+    @replace-src: replace("@{data-uri}", "fill\%3D\%22\%23[\w]{3,6}\%22", escape('fill="@{fill}"'), "g");
+    background-image:~'@{replace-src}';
+}
+
+// Border Radius
+// 
+// @param int + unit, ex 5px
+// 
+.border-radius (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+    -webkit-border-top-right-radius:    @topright;
+    -webkit-border-bottom-right-radius: @bottomright;
+    -webkit-border-bottom-left-radius:  @bottomleft;
+    -webkit-border-top-left-radius:     @topleft;
+
+    -moz-border-radius-topright:        @topright;
+    -moz-border-radius-bottomright:     @bottomright;
+    -moz-border-radius-bottomleft:      @bottomleft;
+    -moz-border-radius-topleft:         @topleft;
+
+    border-top-right-radius:            @topright;
+    border-bottom-right-radius:         @bottomright;
+    border-bottom-left-radius:          @bottomleft;
+    border-top-left-radius:             @topleft;
+
+    -moz-background-clip:    padding; 
+    -webkit-background-clip: padding-box; 
+    background-clip:         padding-box;
+}
+
+// Box Shadow
+// 
+// @param outset|inset
+// 
+// @link http://stackoverflow.com/a/11690251 - é necessário definir o @position como vazio com ~''
+// 
+.box-shadow (@top: 0, @left: 0, @blur: 1px, @size: 0, @color: rgba(0, 0, 0, 0.5), @position: ~'') {
+    -webkit-box-shadow: @top @left @blur @size @color @position;
+       -moz-box-shadow: @top @left @blur @size @color @position;
+            box-shadow: @top @left @blur @size @color @position;
+}
+
+// Gradient
+// 
+// 
+.horizontal-gradient (@startColor: #eee, @endColor: white) {
+    background-color: @startColor;
+    background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+    background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+    background-image: -moz-linear-gradient(left, @startColor, @endColor);
+    background-image: -ms-linear-gradient(left, @startColor, @endColor);
+    background-image: -o-linear-gradient(left, @startColor, @endColor);
+}
+
+// Outline
+// 
+// 
+.outline( @size: 1px, @color: red ){
+    outline: @size dotted @color;
+    outline-offset: -@size;
+}
+
+// criar múltiplas declarações com wildcard
+// @link http://stackoverflow.com/a/21195453
+// 
+// Exemplo:
+// .index-prop(5, col-);
+// 
+// Produz:
+// <code>
+// .col-1 {
+//   width: 1px;
+// }
+// .col-2 {
+//   width: 2px;
+// }
+// .col-3 {
+//   width: 3px;
+// }
+// .col-4 {
+//   width: 4px;
+// }
+// .col-5 {
+//   width: 5px;
+// }
+// </code>
+// 
+.index-prop(@max, @class-prefix, @unit: px, @prop: width,  @i:1) when (@i <= @max) {
+    .@{class-prefix}@{i} {
+        @{prop}: unit(@i, @unit);
+    }
+    .index-prop(@max, @class-prefix, @unit, @prop, @i:(@i+1));
+}
+
+// animation fadein & out
+@keyframes fade-in {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+      to { opacity: 0; }
+}
+
+@keyframes fade-in-out {
+    0%, 100% {
+        opacity: 0;
+    }
+    
+    72% {
+        opacity: 1;
+    }
+}
+
+
+
+// ==================================================
+// PREFIX ===========================================
+// ==================================================
+// Mixins normalizadores
+// 
+//
+
+// Transform
+.transform ( @rule ){
+  -webkit-transform: @rule; /* Ch <36, Saf 5.1+, iOS, An =<4.4.4 */
+      -ms-transform: @rule; /* IE 9 */
+          transform: @rule; /* IE 10, Fx 16+, Op 12.1+ */
+}
+
+// Transition
+.transition (@property: all, @timing: linear, @duration: 0.5s) {
+    -webkit-transition: @property @timing @duration;
+       -moz-transition: @property @timing @duration;
+         -o-transition: @property @timing @duration;
+            transition: @property @timing @duration;
+}
+
+// Placeholder
+// aplicar regras entre {}
+// 
+.placeholder(@rules) {
+    &::-webkit-input-placeholder {
+        @rules();
+    }
+    &:-moz-placeholder {
+        @rules();
+    }
+    &::-moz-placeholder {
+        @rules();
+    }
+    &:-ms-input-placeholder {
+        @rules();
+    }
+}
+
+
+
+// ==================================================
+// STATIC MIXINS ====================================
+// ==================================================
+// Mixins que não precisam de parametros para uso.
+// 
+// 
+
+// clearfix
+.clearfix() {
+    &:before,
+    &:after {
+        content: " "; // 1
+        display: table; // 2
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// evitar highlight de selecao
+.no-select () {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+// remover formatacao do navegador
+.appearance-none {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+

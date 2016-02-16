@@ -83,14 +83,18 @@ function post_meta_posted_on(){
  * @param string $nav_id - id HTML apenas para identificação
  */
 function custom_content_nav( $nav_id ) {
-	global $wp_query;
-
-	if ( $wp_query->max_num_pages > 1 ) : ?>
-		<nav id="<?php echo $nav_id; ?>" class="contents_nav">
-			<div class="nav-previous"><?php next_posts_link( '&larr;  Anteriores' ); ?></div>
-			<div class="nav-next"><?php previous_posts_link( 'Recentes &rarr;' ); ?></div>
-		</nav><!-- #nav-above -->
-	<?php endif;
+    global $wp_query;
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    $pagination_args = array(
+        'query_type' => 'normal',
+        'current' => $paged,
+        'total' => $wp_query->found_posts,
+        'posts_per_page' => $wp_query->query_vars['posts_per_page'],
+        'options' => array(
+            'num_pages' => 5,
+        ),
+    );
+    boros_pagination($pagination_args);
 }
 
 /**

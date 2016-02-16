@@ -17,10 +17,9 @@
  * 
  */
 if( !is_admin() ){
-	add_action( 'wp_print_styles', 'add_frontend_styles' );   // adicionar styles ao header
-	add_action( 'wp_print_scripts', 'add_frontend_scripts' ); // adicionar scripts ao header
-	add_action( 'wp_head', 'work_opengraph', 99 );            // iniciar o opengraph, caso esteja ativado
-	remove_action('wp_head', 'wp_generator');                 // remover a assinatura de versão do wordpress
+	add_action( 'init', 'add_frontend_scripts' );  // adicionar scripts ao header
+	add_action( 'wp_head', 'work_opengraph', 99 ); // iniciar o opengraph, caso esteja ativado
+	remove_action('wp_head', 'wp_generator');      // remover a assinatura de versão do wordpress
 }
 
 function work_opengraph(){
@@ -38,7 +37,9 @@ function work_opengraph(){
  * 
  * 
  */
-function add_frontend_styles(){
+function add_frontend_scripts(){
+    
+    // CSS
 	$css = new BorosCss();
 	$css->vendor('bootstrap.min', 'bootstrap/css');
 	$css->add('wp');
@@ -78,18 +79,8 @@ function add_frontend_styles(){
 	//debug
 	global $wp_styles;pre($wp_styles);
 	/**/
-}
-
-
-
-/**
- * ==================================================
- * JAVASCRIPTS ======================================
- * ==================================================
- * Todos os scripts serão adicionados ao wp_footer() por padrão
- * 
- */
-function add_frontend_scripts(){
+    
+    // JAVASCRIPTS
 	$js = new BorosJs();
     $js->vendor('jquery.validate.min', 'jquery-validation/dist');
 	$js->vendor('bootstrap.min', 'bootstrap/js');
