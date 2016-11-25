@@ -192,12 +192,12 @@ class bootstrap_nav_menu_walker extends Walker_Nav_Menu {
 		
 		$item_output = sprintf(
 			'%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s' . "\n",
-			$args->before,
+			$item->before,
 			$attributes,
-			$args->link_before,
+			$item->link_before,
 			apply_filters( 'the_title', $item->title, $item->ID ),
-			$args->link_after,
-			$args->after
+			$item->link_after,
+			$item->after
 		);
 		
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
