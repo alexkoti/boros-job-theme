@@ -20,6 +20,50 @@ function close_site(){
 }
 
 
+/**
+ * ==================================================
+ * CALENDÁRIO =======================================
+ * ==================================================
+ * 
+ * 
+ */
+add_filter( 'boros_calendar_show_events_button', 'boros_base_calendar_show_events_button', 10, 2 );
+function boros_base_calendar_show_events_button( $output, $args ){
+    $button = array('<div class="show-events-btn hidden-xs">');
+    foreach( $args['events_available'] as $evt ){
+        $cat = $evt->category[0]->slug;
+        $button[] = "<span class='event-circle {$cat}'></span>";
+    }
+    $button[] = '</div>';
+    
+    return implode('', $button);
+}
+
+add_filter( 'boros_calendar_event_day_item_output', 'boros_base_calendar_event_day_item_output', 10, 2 );
+function boros_base_calendar_event_day_item_output( $output, $args ){
+    $cat = $args['post']->category[0]->slug;
+    $thumb = wp_get_attachment_image_src($args['post']->metas['_thumbnail_id'][0]);
+    $excerpt = get_the_excerpt($args['post']);
+    $output = "
+    <li class='event-item {$cat}'>
+        <div class='row hidden-xs'>
+            <div class='col-md-3 col-sm-3'><a href='{$args['post']->url}'><img src='{$thumb[0]}' alt='' class='img-responsive' /></a></div>
+            <div class='col-md-9 col-sm-9'><a href='{$args['post']->url}'>{$args['post']->title}</a><p>{$excerpt}</p></div>
+        </div>
+        <div class='row visible-xs'>
+            <div class='col-md-12 calendar-xs-title'>{$args['post']->title}</div>
+            <div class='col-md-12 calendar-xs-content'>
+                <div class='row'>
+                    <div class='col-xs-3'><a href='{$args['post']->url}'><img src='{$thumb[0]}' alt='' class='img-responsive' /></a></div>
+                    <div class='col-xs-9'><a href='{$args['post']->url}'>{$args['post']->title}</a><p>{$excerpt}</p></div>
+                </div>
+            </div>
+        </div>
+    </li>";
+    return $output;
+}
+
+
 
 /**
  * ==================================================
