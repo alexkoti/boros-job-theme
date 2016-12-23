@@ -6,9 +6,8 @@
  * 
  */
 .wp-editor {
-	background:#FFF;
-	margin:0;
-	padding:0;
+    margin:0;
+    padding:0;
 }
 .mceContentBody > p,
 .mceContentBody > h1,
@@ -22,20 +21,20 @@
 .mceContentBody > table,
 .mceContentBody > blockquote,
 .mceContentBody > pre {
-	background-position:5px 5px, left bottom;
-	background-repeat:no-repeat, repeat-x;
-	border:1px dotted #dbdbdb;
-	box-shadow:inset 0px 0px 20px rgba(245, 245, 245, 1);
-	padding:14px 5px 5px;
-	position:relative;
-	margin:10px;
-	z-index:0;
+    background-position:5px 5px, left bottom;
+    background-repeat:no-repeat, repeat-x;
+    border:1px dotted rgba(0, 0, 0, 0.2);
+    box-shadow:inset 0px 0px 16px rgba(0, 0, 0, 0.05);
+    padding:14px 5px 5px;
+    position:relative;
+    margin:10px;
+    z-index:0;
 }
 
 /* imagem sempre por cima de qualquer elemento */
 .mceContentBody img {
-	position:relative;
-	z-index:999999;
+    position:relative;
+    z-index:999999;
 }
 
 /* labels */
@@ -51,30 +50,36 @@
 .mceContentBody > ol                {background-image:url(img/editor/ol.png)}
 .mceContentBody > ul                {background-image:url(img/editor/ul.png)}
 
+.mceContentBody > ol{
+    padding-top: 16px;
+}
 .mceContentBody > ol li {
-	margin-left: 30px;
+    margin: 10px 0 10px 18px;
 }
 
+.mceContentBody > ul {
+    padding-top: 20px;
+}
 .mceContentBody > ul > li {
-	margin-left: 28px;
+    margin: 8px 0 8px 25px;
 }
 
 .mceContentBody .wp-caption {
-	position:relative;
-	z-index:2;
+    position:relative;
+    z-index:2;
 }
 .mceContentBody .wp-caption .wp-caption-dt {
-	margin:0;
+    margin:0;
 }
 
 .mceContentBody > hr {
-	background:url(img/editor/hr.png) no-repeat 5px 5px;
-	border:1px dotted #dbdbdb;
-	border-bottom:3px solid #d0d0cf;
-	box-shadow:inset 0px 0px 20px rgba(245, 245, 245, 1);
-	height:10px;
-	margin:10px;
-	padding:7px 0 0;
+    background:url(img/editor/hr.png) no-repeat 5px 5px;
+    border:1px dotted #dbdbdb;
+    border-bottom:3px solid #d0d0cf;
+    box-shadow:inset 0px 0px 20px rgba(245, 245, 245, 1);
+    height:10px;
+    margin:10px;
+    padding:7px 0 0;
 }
 
 /**
@@ -82,10 +87,10 @@
  * 
  */
 .mceContentBody > .wpview-wrap {
-	border:1px dotted #dbdbdb;
-	box-shadow:inset 0px 0px 20px rgba(245, 245, 245, 1);
-	margin:10px; /* original none */
-	width:auto; /* original 99.99%; */
+    border:1px dotted #dbdbdb;
+    box-shadow:inset 0px 0px 20px rgba(245, 245, 245, 1);
+    margin:10px; /* original none */
+    width:auto; /* original 99.99%; */
 }
 
 /**
