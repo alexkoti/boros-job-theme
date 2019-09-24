@@ -37,7 +37,7 @@ function add_frontend_scripts(){
     
     // CSS
     $css = new BorosCss();
-    $css->vendor('bootstrap', 'bootstrap/css');
+    $css->vendor('bootstrap.min', 'bootstrap/css');
     $css->vendor('owl.carousel.min', 'owl.carousel/assets');
     //$css->vendor('offcanvas', 'bootstrap-offcanvas');
     $css->vendor('photoswipe', 'PhotoSwipe/dist');
