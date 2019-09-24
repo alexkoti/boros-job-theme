@@ -10,14 +10,15 @@
 
 add_action( 'template_redirect', 'close_site' );
 function close_site(){
-	$logged_in_only = get_option('logged_in_only');
-	if( !empty($logged_in_only) ){
-		if( !is_user_logged_in() ){
-			get_template_part('locked');
-			exit();
-		}
-	}
+    $logged_in_only = get_option('logged_in_only');
+    if( !empty($logged_in_only) ){
+        if( !is_user_logged_in() ){
+            get_template_part('locked');
+            exit();
+        }
+    }
 }
+
 
 
 /**
@@ -74,7 +75,7 @@ function boros_base_calendar_event_day_item_output( $output, $args ){
  */
 add_action( 'wp_footer', 'footer_google_analytics' );
 function footer_google_analytics(){
-	opt_option('google_analytics');
+    opt_option('google_analytics');
 }
 
 
@@ -98,39 +99,39 @@ function footer_google_analytics(){
  */
 //add_filter( 'pre_get_posts', 'filter_pre_get_posts' );
 function filter_pre_get_posts( $query ){
-	$page_on_front = get_option('page_on_front');
-	if( $query->query_vars['page_id'] == $page_on_front ){
-		return $query;
-	}
-	
-	// definir a quantidade de posts padrão em chamadas de query_posts() e WP_Query() na frontpage. Sobrepõem qualquer definição das funções.
-	if( is_front_page() ){
-		$query->query_vars['posts_per_page'] = 3;
-	}
-	
-	// definir a quantidade de posts padrão na home(home de posts)
-	if( is_home() ){
-		$query->query_vars['posts_per_page'] = 2;
-	}
-	
-	// posts per page em fábrica de ideias
-	if(
-		(isset($wp_query->query_vars['post_type']) and $wp_query->query_vars['post_type'] == 'ideia') OR 
-		(isset($wp_query->query_vars['taxonomy']) and $wp_query->query_vars['taxonomy'] == 'category-ideias')
-	){
-		if( $wp_query->is_single != true )
-			$query->query_vars['posts_per_page'] = 14;
-	}
-	
-	// remover vídeos da listagem normal de blogs
-	if( !is_front_page() ){
-		if ( isset($query->category_name) and $query->category_name != 'videos' AND $wp_query->is_admin == false ) {
-			$exclude = get_cat_ID('videos');
-			$query->set('cat', '-'.$exclude);
-		}
-	}
+    $page_on_front = get_option('page_on_front');
+    if( $query->query_vars['page_id'] == $page_on_front ){
+        return $query;
+    }
+    
+    // definir a quantidade de posts padrão em chamadas de query_posts() e WP_Query() na frontpage. Sobrepõem qualquer definição das funções.
+    if( is_front_page() ){
+        $query->query_vars['posts_per_page'] = 3;
+    }
+    
+    // definir a quantidade de posts padrão na home(home de posts)
+    if( is_home() ){
+        $query->query_vars['posts_per_page'] = 2;
+    }
+    
+    // posts per page em fábrica de ideias
+    if(
+        (isset($wp_query->query_vars['post_type']) and $wp_query->query_vars['post_type'] == 'ideia') OR 
+        (isset($wp_query->query_vars['taxonomy']) and $wp_query->query_vars['taxonomy'] == 'category-ideias')
+    ){
+        if( $wp_query->is_single != true )
+            $query->query_vars['posts_per_page'] = 14;
+    }
+    
+    // remover vídeos da listagem normal de blogs
+    if( !is_front_page() ){
+        if ( isset($query->category_name) and $query->category_name != 'videos' AND $wp_query->is_admin == false ) {
+            $exclude = get_cat_ID('videos');
+            $query->set('cat', '-'.$exclude);
+        }
+    }
 
-	return $query;
+    return $query;
 }
 
 
@@ -144,24 +145,24 @@ function filter_pre_get_posts( $query ){
  */
 //add_filter( 'parse_query', 'redirect_pages' );
 function redirect_pages( &$q ) {
-	if( empty($q->is_admin) and isset($q->query_vars['page_id']) ){
-		// ID da página pedida
-		$page_id = $q->query_vars['page_id'];
-		
-		if( $page_id == get_page_ID_by_name('Painel 5', 'page') ){
-			$url = get_permalink( get_page_ID_by_name('Painel Home', 'page') );
-			wp_redirect( $url, 301 );
-			exit();
-		}
-	}
-	/**
-	pre($q);
-	pre($q->query_vars['category_name']);
-	pre($q->query_vars['posts_per_page']);
-	pre($q->query_vars['numberposts']);
-	pre($q->query_vars['posts_per_page']);
-	pre($q->query_vars['numberposts']);
-	/**/
+    if( empty($q->is_admin) and isset($q->query_vars['page_id']) ){
+        // ID da página pedida
+        $page_id = $q->query_vars['page_id'];
+        
+        if( $page_id == get_page_ID_by_name('Painel 5', 'page') ){
+            $url = get_permalink( get_page_ID_by_name('Painel Home', 'page') );
+            wp_redirect( $url, 301 );
+            exit();
+        }
+    }
+    /**
+    pre($q);
+    pre($q->query_vars['category_name']);
+    pre($q->query_vars['posts_per_page']);
+    pre($q->query_vars['numberposts']);
+    pre($q->query_vars['posts_per_page']);
+    pre($q->query_vars['numberposts']);
+    /**/
 }
 
 
