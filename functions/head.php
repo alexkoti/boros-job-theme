@@ -1,39 +1,30 @@
 <?php
 /**
- * CONFIGURAÇÔES PARA O HEAD DO FRONTEND
- * Configurações a serem aplicadas do <head> do frontend, basicamente são as adições dos javascripts e stylesheets, 
- * mas incluindo as manipulações de qualquer elemento do <head>, como description, keywords, rels diversos, etc
- * Jquery e scripts dependentes são declarados aqui, mesmo sendo renderizados no final no wp_footer();
+ * Enqueues e configurações/alterações no <head>
  * 
- * 
+ * Centralizar qualquer function que impacte o <head>.
+ * Utilizar action 'wp_head' para adicionar conteúdo ao <head>
  * 
  */
 
-/* ========================================================================== */
-/* ADD ACTIONS/FILTERS ====================================================== */
-/* ========================================================================== */
+/**    
+ * INIT
+ * frontend_enqueues() precisa rodar no init pois ele já utiliza wp_enqueue_scripts, wp_head e wp_footer
+ * 
+ */
 if( !is_admin() ){
-    add_action( 'init', 'add_frontend_scripts' );  // adicionar scripts ao header
-    add_action( 'wp_head', 'work_opengraph', 99 ); // iniciar o opengraph, caso esteja ativado
-    remove_action('wp_head', 'wp_generator');      // remover a assinatura de versão do wordpress
-}
-
-function work_opengraph(){
-    if( get_option('og_active') == true ){
-        opengraph_tags();
-    }
+    add_action( 'init',      'frontend_enqueues' ); // adicionar scripts ao header
+    add_action( 'wp_head',   'share_tags', 99 );    // iniciar o opengraph, caso esteja ativado
+    remove_action('wp_head', 'wp_generator');       // remover a assinatura de versão do wordpress
 }
 
 
 
 /**
- * ==================================================
- * STYLESHEETS ======================================
- * ==================================================
- * 
+ * ENQUEUES
  * 
  */
-function add_frontend_scripts(){
+function frontend_enqueues(){
     
     // CSS
     $css = new BorosCss();
@@ -113,8 +104,23 @@ function add_frontend_scripts(){
 }
 
 
+
+/**
+ * Compartilhamento
+ * 
+ */
+function share_tags(){
+    $share_tags = new Boros_Share_Tags();
+    $share_tags->tags_opengraph();
+    $share_tags->tags_gplus();
+    $share_tags->tags_twitter();
+}
+
+
+
 /**
  * Disable the emoji's
+ * 
  */
 add_action( 'init', 'disable_emojis' );
 function disable_emojis() {

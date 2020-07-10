@@ -10,7 +10,7 @@
  * ATENÇÃO: o indice 'menu_footer' é utilizado pelo bootstrap_nav_menu_walker(), caso seja preciso modificar o índice, é
  * preciso atualizar 
  */
-add_action( 'admin_init', 'register_menus' );
+add_action( 'after_setup_theme', 'register_menus' );
 function register_menus(){
     register_nav_menus(
         array(
@@ -18,13 +18,6 @@ function register_menus(){
             'menu_footer' => 'Slot Rodapé',
         )
     );
-}
-
-// FIXO: Adicionar item 'Home' às páginas dsponíveis para criar menus
-add_filter( 'wp_page_menu_args', 'home_page_menu_args' );
-function home_page_menu_args( $args ){
-    $args['show_home'] = true;
-    return $args;
 }
 
 
@@ -123,6 +116,14 @@ function boros_page_css_class( $css_class, $page, $depth, $args, $current_page )
  * 
  */
 class bootstrap_nav_menu_walker extends Walker_Nav_Menu {
+
+    /**
+     * Armazenar itens do menu para evitar novas queries
+     * 
+     */
+    var $menu_locations;
+    var $menu_header_items = array();
+
     function start_lvl( &$output, $depth = 0, $args = array() ){
         // depth dependent classes
         $indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
@@ -141,7 +142,20 @@ class bootstrap_nav_menu_walker extends Walker_Nav_Menu {
     function start_el( &$output, $item, $depth = 0, $args = array(), $current_object_id = 0 ){
         //pre($item, 'item');
         //pre($args, 'args');
-        global $wp_query;
+
+        /**
+         * Caso seja o primeiro nível, adicionar class de dropdown, mas apenas quando o existirem childs.
+         * 
+         * ATENÇÃO: o índice 'menu_header' é relativo aos slots de menus registrados em register_menus(), neste mesmo arquivo.
+         * 
+         */
+        if( empty($this->menu_locations) ){
+            $this->menu_locations = get_nav_menu_locations();
+            if( isset($this->menu_locations['menu_header'] ) ){
+                $this->menu_header_items = wp_get_nav_menu_items( $this->menu_locations['menu_header'] );
+            }
+        }
+
         $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
         
         $depth_class_names = "li_normal depth-{$depth}";
@@ -152,30 +166,10 @@ class bootstrap_nav_menu_walker extends Walker_Nav_Menu {
         $output .= $indent . '<li class="' . $depth_class_names . '">';
         
         $link_classes = '';
-        /**
-         * Caso seja o primeiro nível, adicionar class de dropdown, mas apenas quando o existirem childs.
-         * obs: foi usado o $GLOBALS para evitar novas queries de menu
-         * 
-         * ATENÇÃO: o índice 'menu_header' é relativo aos slots de menus registrados em register_menus(), neste mesmo arquivo.
-         * 
-         */
-        if( !isset($GLOBALS['header_menu_cache']) ){
-            //pal('sem cache');
-            $menu_locations = get_nav_menu_locations();
-            $menu_header_items = wp_get_nav_menu_items( $menu_locations['menu_header'] );
-            $GLOBALS['header_menu_cache'] = array(
-                'menu_locations' => $menu_locations,
-                'menu_header_items' => $menu_header_items,
-            );
-        }
-        else{
-            //pal('COM cache');
-            $menu_locations = $GLOBALS['header_menu_cache']['menu_locations'];
-            $menu_header_items = $GLOBALS['header_menu_cache']['menu_header_items'];
-        }
+        
         $childs = false;
-        if( isset($menu_locations['menu_header']) ){
-            foreach( $menu_header_items as $i ){
+        if( isset($this->menu_locations['menu_header']) ){
+            foreach( $this->menu_header_items as $i ){
                 if( $i->menu_item_parent == $item->ID ){
                     $childs[] = $i;
                 }
@@ -206,9 +200,5 @@ class bootstrap_nav_menu_walker extends Walker_Nav_Menu {
         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
     }
 }
-
-
-
-
 
 
