@@ -18,5 +18,6 @@
 </footer>
 
 <?php wp_footer(); ?>
+<?php global $template; $t = basename($template); echo "<!-- {$t} -->"; ?>
 </body>
 </html>
